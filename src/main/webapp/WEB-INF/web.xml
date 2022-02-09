@@ -1,0 +1,117 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>demo java web app</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+
+    <security-constraint>
+        <web-resource-collection>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+            <role-name>analyst</role-name>
+            <role-name>developer</role-name>
+            <role-name>user</role-name>
+            <role-name>manager</role-name>
+            <role-name>process-admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <url-pattern>/devs/</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+            <role-name>analyst</role-name>
+            <role-name>developer</role-name>
+            <role-name>user</role-name>
+            <role-name>manager</role-name>
+            <role-name>process-admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <login-config>
+        <auth-method>KEYCLOAK</auth-method>
+        <realm-name>myrealm</realm-name>
+    </login-config>
+
+    <security-role>
+        <description>Administrator - Administrates the BPMS system. Has full access
+            rights to make any changes necessary. Also has the
+            ability to add and remove users from the system.
+        </description>
+        <role-name>admin</role-name>
+    </security-role>
+
+    <security-role>
+        <description>Analyst - Responsible for creating and designing processes
+            into the system. Creates process flows and handles
+            process change requests. Needs to test processes that
+            they create. Also creates forms and dashboards.
+        </description>
+        <role-name>analyst</role-name>
+    </security-role>
+
+    <security-role>
+        <description>Developer - Implements code required for process to work. Mostly uses
+            the JBDS connection to view processes, but may use the
+            web tool occasionally.
+        </description>
+        <role-name>developer</role-name>
+    </security-role>
+
+    <security-role>
+        <description>Business user - Daily user of the system to take actions on business tasks
+            that are required for the processes to continue forward. Works
+            primarily with the task lists.
+        </description>
+        <role-name>user</role-name>
+    </security-role>
+
+    <security-role>
+        <description>Manager/Viewer-only User - Viewer of the system that is interested in statistics
+            around the business processes and their performance, business indicators, and other
+            reporting of the system and people who interact with the system.
+        </description>
+        <role-name>manager</role-name>
+    </security-role>
+
+    <security-role>
+        <description>Process Administrator - can access and manage the process related activities like process
+            definitions and process instances.
+        </description>
+        <role-name>process-admin</role-name>
+    </security-role>
+
+    <security-role>
+        <description>REST user - Users with the rest-all role can access Business Central REST capabilities.</description>
+        <role-name>rest-all</role-name>
+    </security-role>
+
+    <security-role>
+        <description>REST project - Users with the rest-project role can access Business Central REST capabilities.</description>
+        <role-name>rest-project</role-name>
+    </security-role>
+
+
+  <servlet>
+     <servlet-name>Hello</servlet-name>
+     <servlet-class>Hello</servlet-class>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>Hello</servlet-name>
+     <url-pattern>/Hello</url-pattern>
+  </servlet-mapping>
+
+</web-app>
